@@ -5,7 +5,7 @@ Sistema de pedidos de um delivery de comida baiana: o cliente monta o pedido, a 
 | Integrante| Usuário no GitHub |
 |---|---|
 | Williane Vitória | seu-usuario |
-| Laísa Kelle | seu-usuario |
+| Laísa Kelle | laisa-cyber |
 | Ana Beatriz | seu-usuario |
 
 ## Como rodar
