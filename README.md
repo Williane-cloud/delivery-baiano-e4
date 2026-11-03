@@ -1,4 +1,4 @@
-# Nome do delivery (ou delivery-baiano-eN)
+# Delivery Baiano
 Sistema de pedidos de um delivery de comida baiana: o cliente monta o pedido, a cozinha atualiza o status e a administradora cuida do cardápio.
 
 ## Integrantes
