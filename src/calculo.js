@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 // --- ARQUIVO DE TESTE E EXECUÇÃO (calculo.js) ---
 
 // Importando as funções do arquivo regras.js
+=======
+
+>>>>>>> 3034aaa259b148956da5dbd2650105cc14600b44
 const { calcularSubtotal, calcularTaxaEntrega, validarPedido } = require('./regras');
 
 function processarCenario(qtds, bairro, hora, primeiraCompra, cupom) {
@@ -28,9 +32,14 @@ function processarCenario(qtds, bairro, hora, primeiraCompra, cupom) {
     console.log("---------------------------\n");
 }
 
+<<<<<<< HEAD
 // SIMULAÇÃO DE UM PEDIDO:
 // Quantidade de cada prato [Acarajé, Abará, Moqueca, Bobó, Vatapá, Cocada]
 const meuPedido = [2, 0, 1, 0, 0, 0]; 
 
 // Testando o cenário (Pedido, Bairro, Hora do pedido, É primeira compra?, Cupom)
+=======
+const meuPedido = [2, 0, 1, 0, 0, 0]; 
+
+>>>>>>> 3034aaa259b148956da5dbd2650105cc14600b44
 processarCenario(meuPedido, "Pituba", 14, true, "PRIMEIRA10");

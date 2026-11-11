@@ -6,7 +6,7 @@ Sistema de pedidos de um delivery de comida baiana: o cliente monta o pedido, a 
 |---|---|
 | Williane Vitória | Williane-cloud |
 | Laísa Kelle | laisa-cyber |
-| Ana Beatriz | seu-usuario |
+| Ana Beatriz | ana-beatriz-cm |
 
 ## Como rodar
 Precisa do Node.js 26. Ainda não há código: o projeto começa na Sprint 1.
