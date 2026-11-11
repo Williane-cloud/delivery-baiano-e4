@@ -1,6 +1,5 @@
 
-const CARDAPIO = require('./dados/cardapio.js');
-
+const CARDAPIO = require('./cardapio.js');
 console.log("Testando carregamento do cardápio...");
 console.assert(Array.isArray(CARDAPIO), "O cardápio deve ser um array");
 console.assert(CARDAPIO.length > 0, "O cardápio não pode estar vazio");
