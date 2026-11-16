@@ -1,39 +1,46 @@
+// src/regras.js as regras do pedido da Dona Ju, em funções
+// Dinheiro sempre em centavos inteiros.
+// Nenhuma função daqui escreve na tela: recebe dados e devolve um resultado.
 
-const PRATOS = ["Acarajé", "Abará", "Moqueca de peixe", "Bobó de camarão", "Vatapá", "Cocada"];
-const PRECOS = [1200, 1000, 4200, 3800, 1500, 600]; // Valores em centavos
-const PEDIDO_MINIMO = 3000; // R$ 30,00
+// Preços do cardápio da equipe, em centavos, na mesma ordem do index.html
+const PRECOS = [1200, 1000, 4200, 3800, 1500, 600];
+const PEDIDO_MINIMO = 3000;
 
-function calcularSubtotal(qtds) {
-    let subtotal = 0;
-    let totalItens = 0;
-    for (let i = 0; i < PRECOS.length; i++) {
-        if (qtds[i] > 0) {
-            subtotal += PRECOS[i] * qtds[i];
-            totalItens += qtds[i];
-        }
-    }
-    return { subtotal, totalItens };
+// Soma preço vezes quantidade, prato por prato
+function calcularSubtotal(precos, qtds) {
+  return 0; // integrante 1
 }
 
-function calcularTaxaEntrega(bairro) {
-    switch (bairro) {
-        case "Rio Vermelho": return 500;
-        case "Barra": return 600;
-        case "Pituba": return 700;
-        case "Itapuã": return 900;
-        default: return 0; // Bairro não atendido
-    }
+// Taxa de entrega pelo bairro; 0 quer dizer que não entregamos lá
+function calcularTaxa(bairro) {
+  return 0; // integrante 2
 }
 
-function validarPedido(subtotal, taxa, hora) {
-    if (taxa === 0) return "Recusado: bairro não atendido.";
-    if (hora < 11 || hora >= 22) return "Recusado: pedidos só das 11h às 22h.";
-    if (subtotal < PEDIDO_MINIMO) {
-        let falta = PEDIDO_MINIMO - subtotal;
-        let faltaReais = (falta / 100).toFixed(2);
-        return `Recusado: faltam R$ ${faltaReais} para o valor mínimo.`;
-    }
-    return "Aprovado";
+// Cupom PRIMEIRA10: 10% nos itens, só na primeira compra
+function calcularDesconto(subtotal, cupom, primeiraCompra) {
+  return 0; // integrante 3
 }
 
-module.exports = { calcularSubtotal, calcularTaxaEntrega, validarPedido };
+// Pedidos das 11h às 22h; 22h em ponto já recusa
+function dentroDoHorario(hora) {
+  return false; // integrante 2
+}
+
+// Devolve o motivo da recusa, ou "" quando o pedido pode seguir
+function motivoDaRecusa(pedido) {
+  return ""; // integrante 3
+}
+
+// Total: itens, menos o desconto, mais a taxa de entrega
+function calcularTotal(pedido) {
+  return 0; // integrante 1
+}
+
+module.exports = {
+  calcularSubtotal,
+  calcularTaxa,
+  calcularDesconto,
+  dentroDoHorario,
+  motivoDaRecusa,
+  calcularTotal,
+};
