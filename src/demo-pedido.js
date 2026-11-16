@@ -14,6 +14,9 @@ pedido1.adicionarItem(new ItemPedido(coxinha, 2)); // 2 * 8 = 16
 pedido1.adicionarItem(new ItemPedido(refri, 3));    // 3 * 10 = 30
 // Total = 46,00
 
+for (const item of pedido1.itens) {
+  console.log(`${item.quantidade} x ${item.produto.nome}`);
+}
 console.log(`Pedido 1 Total: R$ ${pedido1.calcularTotal().toFixed(2).replace('.', ',')}`);
 assert.strictEqual(pedido1.calcularTotal(), 46.00);
 
