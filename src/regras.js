@@ -19,7 +19,7 @@ function calcularSubtotal(qtds) {
     return { subtotal, totalItens };
 }
 
-function calcularTaxaEntrega(bairro) {
+function calcularTaxa(bairro) {
     switch (bairro) {
         case "Rio Vermelho": return 500;
         case "Barra": return 600;
