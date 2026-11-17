@@ -1,4 +1,4 @@
-const { validarPedidoMinimo } = require("../regras");
+import { validarPedidoMinimo } from "../regras.js";
 
 class Pedido {
   constructor() {
@@ -19,4 +19,4 @@ class Pedido {
   }
 }
 
-module.exports = Pedido;
+export default Pedido;

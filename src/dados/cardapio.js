@@ -8,4 +8,4 @@ const CARDAPIO = [
   { id: 6, nome: "Guarda-sol", preco: 2000, disponivel: true },
 ];
 
-module.exports = CARDAPIO;
+export default CARDAPIO;

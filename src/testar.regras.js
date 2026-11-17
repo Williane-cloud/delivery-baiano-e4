@@ -1,6 +1,6 @@
 // src/testar.regras.js
 
-const CARDAPIO = require('./dados/cardapio.js');
+import { CARDAPIO } from "./dados/cardapio.js";
 
 const comanda = [
   { id: 1, qtd: 2 },
