@@ -2,9 +2,11 @@
   "name": "delivery-baiano-e4",
   "version": "1.0.0",
   "description": "Projeto de lógica e back-end com JavaScript das aulas",
-  "main": "src/calculo.js",
+  "main": "src/demo-pedido.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/demo-pedido.js",
+    "dev": "node --watch src/demo-pedido.js",
+    "test": "node src/testar-regras.js && node src/testar.cardapio.js"
   },
   "keywords": [],
   "author": "Laísa",
