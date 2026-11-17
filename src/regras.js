@@ -1,3 +1,8 @@
+// ==========================================
+// PROJETO DELIVERY BAIANO - SPRINT 2
+// Arquivo: src/regras.js
+// ==========================================
+
 const PRATOS = ["Acarajé", "Abará", "Moqueca de peixe", "Bobó de camarão", "Vatapá", "Cocada"];
 const PRECOS = [1200, 1000, 4200, 3800, 1500, 600]; // Valores em centavos
 const PEDIDO_MINIMO = 3000; // R$ 30,00
@@ -34,11 +39,5 @@ function validarPedido(subtotal, taxa, hora) {
     }
     return "Aprovado";
 }
-// Adicione esta função no final do seu src/regras.js
-function validarPedido(subtotal, taxa, hora) {
-    return validarPedido(subtotal, taxa, hora);
-}
-
-
 
 export { calcularSubtotal, calcularTaxaEntrega, validarPedido };

@@ -1,21 +1,24 @@
-import { validarPedidoMinimo } from "../regras.js";
+import { validarPedido } from "../regras.js";
+import ItemPedido from "./ItemPedido.js";
 
 class Pedido {
-  constructor() {
+  constructor(bairro, hora) {
+    this.bairro = bairro;
+    this.hora = hora;
     this.itens = [];
   }
 
-  adicionarItem(item) {
-    this.itens.push(item);
+  adicionarItem(item, qtd = 1) {
+    this.itens.push(new ItemPedido(item, qtd));
   }
 
-  calcularTotal() {
+  calcularSubtotal() {
     return this.itens.reduce((total, item) => total + item.calcularSubtotal(), 0);
   }
 
-  validarMinimo() {
-    const total = this.calcularTotal();
-    return validarPedidoMinimo(total);
+  validarMinimo(taxa, hora) {
+    const subtotal = this.calcularSubtotal();
+    return validarPedido(subtotal, taxa, hora);
   }
 }
 

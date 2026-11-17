@@ -5,6 +5,9 @@
 // ==========================================
 
 // Preço base dos itens do cardápio (em centavos)
+import * as regras from "./regras.js";
+import { buscarProduto } from "./dados/cardapio.js";
+
 const PRECO_ACARAJE = 1200; // R$ 12,00
 const PRECO_ABARA = 1000;   // R$ 10,00
 const PRECO_VATAPA = 1500;  // R$ 15,00

@@ -3,7 +3,6 @@
 // console.assert fica quieto quando a regra acerta e avisa quando erra.
 
 import * as regras from "./regras.js";
-
 console.log("Testando as regras...");
 
 // Cada regra sozinha, com dados de exemplo
