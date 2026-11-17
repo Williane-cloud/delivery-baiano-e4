@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Projeto de lógica e back-end com JavaScript das aulas",
   "main": "src/demo-pedido.js",
+  "type": "module",
   "scripts": {
     "start": "node src/demo-pedido.js",
     "dev": "node --watch src/demo-pedido.js",

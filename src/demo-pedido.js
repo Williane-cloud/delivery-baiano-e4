@@ -1,7 +1,7 @@
-const assert = require("assert");
-const Produto = require("./models/Produto");
-const ItemPedido = require("./models/ItemPedido");
-const Pedido = require("./models/Pedido");
+import assert from "assert";
+import Produto from "./models/produto.js";
+import ItemPedido from "./models/itemPedido.js";
+import Pedido from "./models/pedido.js";
 
 // Criando produtos de teste
 const coxinha = new Produto(1, "Coxinha de Frango", 8.00);

@@ -64,7 +64,7 @@ function calcularTotal(pedido) {
   return subtotal - desconto + taxa;
 }
 
-module.exports = {
+export {
   calcularSubtotal,
   calcularTaxa,
   calcularDesconto,
