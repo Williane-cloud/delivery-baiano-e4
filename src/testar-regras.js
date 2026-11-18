@@ -1,32 +1,46 @@
-// src/testar-regras.js confere as regras do regras.js
-// Rodar na pasta do repositório: node src/testar-regras.js
-// console.assert fica quieto quando a regra acerta e avisa quando erra.
+// ==========================================
+// PROJETO DELIVERY BAIANO - SPRINT 2
+// Arquivo: src/testar-regras.js
+// ==========================================
 
 import * as regras from "./regras.js";
 
 console.log("Testando as regras...");
 
-// Cada regra sozinha, com dados de exemplo
-console.assert(regras.calcularSubtotal([1200, 600], [2, 1]) === 3000, "subtotal: 2 x R$ 12,00 + 1 x R$ 6,00");
+// 1. Teste de Subtotal e Total de Itens
+// Índices: [0: Acarajé (1200), 1: Abará (1000), 2: Moqueca (4200), 3: Bobó (3800), 4: Vatapá (1500), 5: Cocada (600)]
+// 2 x R$ 12,00 (2400) + 1 x R$ 6,00 (600) = 3000 centavos (3 itens)
+const resultado1 = regras.calcularSubtotal([2, 0, 0, 0, 0, 1]);
+console.assert(resultado1.subtotal === 3000, "subtotal: 2 x R$ 12,00 + 1 x R$ 6,00");
+console.assert(resultado1.totalItens === 3, "totalItens: deve ser 3");
+
+// 2. Teste de Taxa de Entrega
+console.assert(regras.calcularTaxa("Rio Vermelho") === 500, "taxa Rio Vermelho deve ser 500");
+console.assert(regras.calcularTaxa("Barra") === 600, "taxa Barra deve ser 600");
+console.assert(regras.calcularTaxa("Pituba") === 700, "taxa Pituba deve ser 700");
+console.assert(regras.calcularTaxa("Itapuã") === 900, "taxa Itapuã deve ser 900");
 console.assert(regras.calcularTaxa("Lua") === 0, "bairro fora da área não tem taxa");
-console.assert(regras.calcularDesconto(3000, "PRIMEIRA10", true) === 300, "PRIMEIRA10 dá 10% na primeira compra");
-console.assert(regras.calcularDesconto(3000, "PRIMEIRA10", false) === 0, "PRIMEIRA10 só vale na primeira compra");
-console.assert(regras.dentroDoHorario(11) === true, "11h em ponto aceita");
-console.assert(regras.dentroDoHorario(22) === false, "22h em ponto recusa");
 
-// Os 5 cenários do pedido. A conta de cada um foi feita no papel antes.
-const pedido1 = { qtds: [2, 1, 0, 0, 0, 1], bairro: "Barra", hora: 12, primeiraCompra: false, cupom: "" };
-const pedido2 = { qtds: [0, 0, 0, 0, 2, 0], bairro: "Rio Vermelho", hora: 19, primeiraCompra: true, cupom: "PRIMEIRA10" };
-const pedido3 = { qtds: [1, 0, 0, 0, 0, 1], bairro: "Pituba", hora: 12, primeiraCompra: false, cupom: "" };
-const pedido4 = { qtds: [0, 0, 1, 0, 0, 0], bairro: "Itapuã", hora: 22, primeiraCompra: false, cupom: "" };
-const pedido5 = { qtds: [0, 0, 0, 1, 0, 0], bairro: "Liberdade", hora: 13, primeiraCompra: false, cupom: "" };
-
-console.assert(regras.motivoDaRecusa(pedido1) === "", "1: pedido comum é aceito");
-console.assert(regras.calcularTotal(pedido1) === 4600, "1: total R$ 46,00");
-console.assert(regras.motivoDaRecusa(pedido2) === "", "2: no limite do mínimo é aceito");
-console.assert(regras.calcularTotal(pedido2) === 3200, "2: total R$ 32,00 com o cupom");
-console.assert(regras.motivoDaRecusa(pedido3) === "abaixo do mínimo de R$ 30,00 em itens", "3: abaixo do mínimo");
-console.assert(regras.motivoDaRecusa(pedido4) === "pedidos só das 11h às 22h", "4: 22h em ponto");
-console.assert(regras.motivoDaRecusa(pedido5) === "não entregamos em Liberdade", "5: fora da área");
+// 3. Teste de Validação do Pedido
+console.assert(
+    regras.validarPedido(3000, 0, 12) === "Recusado: bairro não atendido.",
+    "deve recusar bairro não atendido"
+);
+console.assert(
+    regras.validarPedido(3000, 500, 10) === "Recusado: pedidos só das 11h às 22h.",
+    "deve recusar pedido antes das 11h"
+);
+console.assert(
+    regras.validarPedido(3000, 500, 22) === "Recusado: pedidos só das 11h às 22h.",
+    "deve recusar pedido a partir das 22h"
+);
+console.assert(
+    regras.validarPedido(2000, 500, 14) === "Recusado: faltam R$ 10.00 para o valor mínimo.",
+    "deve recusar pedido abaixo de R$ 30,00"
+);
+console.assert(
+    regras.validarPedido(3000, 500, 14) === "Aprovado",
+    "deve aprovar pedido dentro das regras"
+);
 
 console.log("Fim. Se nenhum Assertion failed apareceu acima, tudo passou.");
