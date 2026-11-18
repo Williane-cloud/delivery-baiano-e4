@@ -1,25 +1,27 @@
+import ItemPedido from "./itemPedido.js";
 import { validarPedido } from "../regras.js";
-import ItemPedido from "./ItemPedido.js";
 
-class Pedido {
-  constructor(bairro, hora) {
+export default class Pedido {
+  constructor(bairro = "Rio Vermelho", hora = 12) {
     this.bairro = bairro;
     this.hora = hora;
     this.itens = [];
   }
 
-  adicionarItem(item, qtd = 1) {
-    this.itens.push(new ItemPedido(item, qtd));
+  adicionarItem(itemPedido) {
+    this.itens.push(itemPedido);
   }
 
   calcularSubtotal() {
     return this.itens.reduce((total, item) => total + item.calcularSubtotal(), 0);
   }
 
-  validarMinimo(taxa, hora) {
+  calcularTotal() {
+    return this.calcularSubtotal();
+  }
+
+  validarMinimo(taxa = 500, hora = 12) {
     const subtotal = this.calcularSubtotal();
     return validarPedido(subtotal, taxa, hora);
   }
 }
-
-export default Pedido;

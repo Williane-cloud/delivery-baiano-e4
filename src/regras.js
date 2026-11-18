@@ -29,6 +29,10 @@ function calcularTaxa(bairro) {
     }
 }
 
+function calcularTaxaEntrega(bairro) {
+    return calcularTaxa(bairro);
+}
+
 function validarPedido(subtotal, taxa, hora) {
     if (taxa === 0) return "Recusado: bairro não atendido.";
     if (hora < 11 || hora >= 22) return "Recusado: pedidos só das 11h às 22h.";
@@ -40,4 +44,4 @@ function validarPedido(subtotal, taxa, hora) {
     return "Aprovado";
 }
 
-export { calcularSubtotal, calcularTaxaEntrega, validarPedido };
+export { calcularSubtotal, calcularTaxa, calcularTaxaEntrega, validarPedido };

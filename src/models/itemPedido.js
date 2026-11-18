@@ -1,5 +1,5 @@
-class ItemPedido {
-  constructor(produto, quantidade) {
+export default class ItemPedido {
+  constructor(produto, quantidade = 1) {
     this.produto = produto;
     this.quantidade = quantidade;
   }
@@ -8,5 +8,3 @@ class ItemPedido {
     return this.produto.preco * this.quantidade;
   }
 }
-
-export default ItemPedido;
