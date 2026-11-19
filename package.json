@@ -7,9 +7,12 @@
   "scripts": {
     "start": "node src/demo-pedido.js",
     "dev": "node --watch src/demo-pedido.js",
-    "test": "node src/testar-regras.js && node src/testar.cardapio.js"
+    "test": "node src/testar-regras.js && node src/testar-cardapio.js"
   },
   "keywords": [],
   "author": "Laísa",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "dayjs": "^1.11.23"
+  }
 }
