@@ -1,6 +1,6 @@
 // src/models/pedido.js
-import ItemPedido from "./itemPedido.js";
 import * as regras from "../regras.js";
+import ItemPedido from "./itemPedido.js";
 
 export default class Pedido {
   constructor(bairro = "Rio Vermelho", hora = 12, cupom = "", primeiraCompra = false) {
@@ -41,7 +41,7 @@ export default class Pedido {
     if (regras.calcularTaxa(this.bairro) === 0) {
       throw new Error(`não entregamos em ${this.bairro}`);
     }
-    if (!regras.dentroDoHorario(this.hora)) {
+    if (this.hora < 11 || this.hora >= 22) {
       throw new Error("pedidos só das 11h às 22h");
     }
     if (this.subtotal() < regras.PEDIDO_MINIMO) {
