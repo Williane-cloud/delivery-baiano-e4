@@ -1,0 +1,36 @@
+import express from "express";
+import path from "node:path";
+import rotasProdutos from "./rotas/produtos.js";
+import { ErroValidacao, ErroNaoEncontrado } from "./erros.js";
+
+const app = express();
+
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+});
+
+app.use(express.json());
+app.use(express.static(path.join(import.meta.dirname, "public")));
+
+app.use(rotasProdutos);
+
+app.use((req, res) => {
+  res.status(404).json({ erro: `rota não encontrada: ${req.method} ${req.url}` });
+});
+
+app.use((erro, req, res, next) => {
+  if (erro instanceof ErroValidacao) {
+    return res.status(400).json({ erro: erro.message });
+  }
+  if (erro instanceof ErroNaoEncontrado) {
+    return res.status(404).json({ erro: erro.message });
+  }
+  if (erro.type === "entity.parse.failed") {
+    return res.status(400).json({ erro: "o corpo não é um JSON válido" });
+  }
+  console.error(erro);
+  res.status(500).json({ erro: "erro interno, tente de novo em instantes" });
+});
+
+export default app;
