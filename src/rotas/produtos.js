@@ -1,20 +1,23 @@
 import { Router } from "express";
-import { listarAtivos, buscarProduto } from "../dados/cardapio.js";
+import CARDAPIO from "../dados/cardapio.js";
 import { ErroNaoEncontrado } from "../erros.js";
 
 const rotas = Router();
 
-// GET /produtos: pratos ativos
 rotas.get("/produtos", (req, res) => {
-  res.json(listarAtivos());
+  res.json(CARDAPIO);
 });
 
-// GET /produtos/:id: prato por ID
 rotas.get("/produtos/:id", (req, res) => {
-  const produto = buscarProduto(Number(req.params.id));
+  const id = Number(req.params.id);
+  const produto = Array.isArray(CARDAPIO)
+    ? CARDAPIO.find((item) => Number(item.id) === id)
+    : undefined;
+
   if (!produto) {
     throw new ErroNaoEncontrado(`prato ${req.params.id} não existe`);
   }
+
   res.json(produto);
 });
 
