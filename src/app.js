@@ -1,31 +1,24 @@
 import express from "express";
 import path from "node:path";
 import rotasProdutos from "./rotas/produtos.js";
+import rotasPedidos from "./rotas/pedidos.js";
 import { ErroValidacao, ErroNaoEncontrado } from "./erros.js";
 
 const app = express();
 
 app.use((req, res, next) => {
-  console.log(`${req.method} ${req.url}`);
+  console.log(`${req.method}${req.url}`);
   next();
 });
 
 app.use(express.json());
-app.use(express.static(path.join(import.meta.dirname, "public")));
+app.use(express.static(path.join(import.meta.dirname, "..", "public")));
+
 app.use(rotasProdutos);
-
-app.post("/pedidos", (req, res) => {
-  const novoPedido = {
-    id: Date.now(),
-    ...req.body,
-    status: "criado"
-  };
-
-  return res.status(201).json(novoPedido);
-});
+app.use(rotasPedidos);
 
 app.use((req, res) => {
-  res.status(404).json({ erro: `rota não encontrada: ${req.method} ${req.url}` });
+  res.status(404).json({ erro: `rota não encontrada: ${req.method}${req.url}` });
 });
 
 app.use((erro, req, res, next) => {
@@ -39,7 +32,7 @@ app.use((erro, req, res, next) => {
     return res.status(400).json({ erro: "o corpo não é um JSON válido" });
   }
   console.error(erro);
-  return res.status(500).json({ erro: "erro interno, tente de novo em instantes" });
+  res.status(500).json({ erro: "erro interno, tente de novo em instantes" });
 });
 
 export default app;
