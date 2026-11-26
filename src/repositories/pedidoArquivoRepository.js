@@ -39,3 +39,15 @@ export async function salvar(dados) {
   
   return novo;
 }
+
+// Atualiza o status de um pedido pelo ID e devolve o pedido atualizado (ou undefined)
+export async function atualizarStatus(id, status) {
+  const pedidos = await listar();
+  const pedido = pedidos.find((p) => p.id === id);
+  if (!pedido) {
+    return undefined;
+  }
+  pedido.status = status;
+  await writeFile(ARQUIVO, JSON.stringify(pedidos, null, 2), "utf-8");
+  return pedido;
+}
